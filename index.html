@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomathi S — Senior Android Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fef2f2', 100: '#fee2e2', 200: '#fecaca', 300: '#fca5a5',
+                            400: '#f87171', 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c',
+                            800: '#991b1b', 900: '#7f1d1d', 950: '#450a0a',
+                        },
+                        dark: {
+                            50: '#1a1a1a', 100: '#141414', 200: '#111111', 300: '#0d0d0d',
+                            400: '#0a0a0a', 500: '#050505', 600: '#000000',
+                        }
+                    },
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } },
+                        glow: { '0%': { boxShadow: '0 0 20px rgba(220, 38, 38, 0.3)' }, '100%': { boxShadow: '0 0 40px rgba(220, 38, 38, 0.6)' } },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { font-family: 'Inter', sans-serif; font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+        ::selection { background: rgba(220, 38, 38, 0.3); color: #fca5a5; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+        .reveal { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(10px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        .reveal-delay-1 { transition-delay: 100ms; }
+        .reveal-delay-2 { transition-delay: 200ms; }
+        .reveal-delay-3 { transition-delay: 300ms; }
+        .reveal-delay-4 { transition-delay: 400ms; }
+        .reveal-delay-5 { transition-delay: 500ms; }
+        .hero-gradient { background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(220, 38, 38, 0.15), transparent), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(220, 38, 38, 0.05), transparent); }
+        .grid-bg { background-image: linear-gradient(rgba(220, 38, 38, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(220, 38, 38, 0.03) 1px, transparent 1px); background-size: 60px 60px; }
+        .red-line { background: linear-gradient(90deg, transparent, #dc2626, transparent); }
+        .card-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-hover:hover { transform: translateY(-4px); border-color: rgba(220, 38, 38, 0.3); box-shadow: 0 20px 40px -15px rgba(220, 38, 38, 0.15); }
+        .skill-bar { background: linear-gradient(90deg, #dc2626, #ef4444); box-shadow: 0 0 10px rgba(220, 38, 38, 0.5); transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .timeline-dot { box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.2); }
+        .nav-link { position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #dc2626; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .particle { position: absolute; width: 2px; height: 2px; background: #dc2626; border-radius: 50%; opacity: 0.3; animation: float 8s ease-in-out infinite; }
+        .cert-badge { background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(220, 38, 38, 0.05)); border: 1px solid rgba(220, 38, 38, 0.3); animation: glow 3s ease-in-out infinite alternate; }
+        .github-btn { background: linear-gradient(135deg, #dc2626, #991b1b); transition: all 0.3s ease; }
+        .github-btn:hover { background: linear-gradient(135deg, #ef4444, #dc2626); transform: scale(1.05); box-shadow: 0 0 30px rgba(220, 38, 38, 0.4); }
+        .text-gradient { background: linear-gradient(to bottom, #ffffff, #fca5a5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-gradient-red { background: linear-gradient(135deg, #ef4444, #dc2626, #b91c1c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .project-img { object-fit: contain; }
+        @media (max-width: 768px) {
+            .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+            .mobile-menu.open { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-inter antialiased overflow-x-hidden">
+
+    <div class="fixed inset-0 pointer-events-none z-0" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-white/5" style="background: rgba(0,0,0,0.8); backdrop-filter: blur(24px);">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm group-hover:shadow-lg group-hover:shadow-brand-600/30 transition-all duration-300">G</div>
+                <span class="font-semibold text-white tracking-tight hidden sm:block">Gomathi<span class="text-brand-500">.dev</span></span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">Skills</a>
+                <a href="#experience" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">Experience</a>
+                <a href="#projects" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">Projects</a>
+                <a href="#education" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">Education</a>
+                <a href="#contact" class="nav-link text-sm text-slate-400 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="flex items-center gap-2 text-sm text-slate-400 hover:text-brand-400 transition-colors duration-300">
+                    <span class="iconify" data-icon="mdi:github" data-width="18"></span>GitHub
+                </a>
+                <a href="#contact" class="px-5 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold rounded-lg transition-all duration-150" style="box-shadow: 0 0 20px rgba(220,38,38,0.3);">Hire Me</a>
+            </div>
+            <button id="menuBtn" class="md:hidden text-white p-2" aria-label="Toggle menu">
+                <span class="iconify" data-icon="mdi:menu" data-width="24"></span>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu fixed top-16 right-0 bottom-0 w-72 bg-dark-200 border-l border-white/5 md:hidden z-50">
+            <div class="p-6 flex flex-col gap-4">
+                <a href="#about" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">About</a>
+                <a href="#skills" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">Skills</a>
+                <a href="#experience" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">Experience</a>
+                <a href="#projects" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">Projects</a>
+                <a href="#education" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">Education</a>
+                <a href="#contact" class="mobile-link text-sm text-slate-400 hover:text-white py-2 border-b border-white/5 transition-colors">Contact</a>
+                <a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="flex items-center gap-2 text-sm text-brand-400 py-2">
+                    <span class="iconify" data-icon="mdi:github" data-width="18"></span>GitHub Profile
+                </a>
+                <a href="#contact" class="mt-4 px-5 py-3 bg-brand-600 text-white text-sm font-semibold rounded-lg text-center">Hire Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center hero-gradient grid-bg pt-16">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-brand-600/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        <div class="absolute top-20 right-20 w-px h-32 bg-gradient-to-b from-transparent via-brand-600/30 to-transparent"></div>
+        <div class="absolute bottom-32 left-20 w-px h-32 bg-gradient-to-b from-transparent via-brand-600/30 to-transparent"></div>
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+            <div class="reveal inline-flex items-center gap-2 cert-badge rounded-full px-5 py-2 mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+                </span>
+                <span class="text-xs font-medium text-brand-300 tracking-wide">Currently Pursuing — Master in AI Certification</span>
+            </div>
+            <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.05] mb-6">
+                <span class="text-gradient">Gomathi</span>
+                <span class="text-brand-500"> S</span>
+            </h1>
+            <div class="reveal reveal-delay-2 flex items-center justify-center gap-3 mb-6">
+                <div class="h-px w-8 bg-brand-600"></div>
+                <p class="text-lg md:text-xl font-light text-slate-300 tracking-wide">Senior Android Developer</p>
+                <div class="h-px w-8 bg-brand-600"></div>
+            </div>
+            <p class="reveal reveal-delay-3 text-sm md:text-base font-light text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+                8+ years crafting high-performance Android applications with Kotlin, Java & modern architectures. Building the future of mobile — now expanding into Artificial Intelligence.
+            </p>
+            <div class="reveal reveal-delay-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="github-btn px-8 py-3.5 text-white text-sm font-semibold rounded-lg flex items-center gap-2">
+                    <span class="iconify" data-icon="mdi:rocket-launch-outline" data-width="18"></span>View My Work
+                </a>
+                <a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="group px-8 py-3.5 border border-white/10 hover:border-brand-600/50 text-white text-sm font-semibold rounded-lg flex items-center gap-2 transition-all duration-300 hover:bg-white/5">
+                    <span class="iconify group-hover:rotate-12 transition-transform duration-300" data-icon="mdi:github" data-width="18"></span>GitHub Profile
+                </a>
+                <a href="#contact" class="px-8 py-3.5 text-slate-400 hover:text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors duration-300">
+                    <span class="iconify" data-icon="mdi:email-outline" data-width="18"></span>Get in Touch
+                </a>
+            </div>
+            <div class="reveal reveal-delay-5 mt-20 flex flex-col items-center gap-2 animate-float">
+                <span class="text-[10px] uppercase tracking-widest text-slate-600">Scroll</span>
+                <div class="w-5 h-8 border border-white/10 rounded-full flex justify-center pt-1.5">
+                    <div class="w-1 h-2 bg-brand-500 rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="relative border-y border-white/5 bg-dark-300">
+        <div class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="reveal text-center"><div class="text-3xl md:text-4xl font-bold text-gradient-red">8+</div><div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Years Experience</div></div>
+            <div class="reveal reveal-delay-1 text-center"><div class="text-3xl md:text-4xl font-bold text-gradient-red">8+</div><div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Key Projects</div></div>
+            <div class="reveal reveal-delay-2 text-center"><div class="text-3xl md:text-4xl font-bold text-gradient-red">5</div><div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Companies</div></div>
+            <div class="reveal reveal-delay-3 text-center"><div class="text-3xl md:text-4xl font-bold text-gradient-red">2</div><div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Developers Mentored</div></div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="relative py-24 md:py-32 grid-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-white/5 relative">
+                            <img src="https://picsum.photos/seed/gomathi-android-dev/600/600.jpg" alt="Gomathi S" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 hover:opacity-80 transition-all duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6"><div class="flex items-center gap-3"><div class="w-3 h-3 rounded-full bg-brand-500 animate-pulse"></div><span class="text-xs text-slate-400">Available for opportunities</span></div></div>
+                        </div>
+                        <div class="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-brand-600/50 rounded-tl-lg"></div>
+                        <div class="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-brand-600/50 rounded-br-lg"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="reveal">
+                        <span class="text-xs font-mono text-brand-500 uppercase tracking-widest">About Me</span>
+                        <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mt-3 mb-6 text-gradient">Passionate Android<br>Developer & AI Explorer</h2>
+                    </div>
+                    <div class="reveal reveal-delay-1 space-y-4 text-sm text-slate-400 leading-relaxed font-light">
+                        <p>I'm a Senior Android Developer with over <span class="text-white font-medium">8+ years of experience</span> building robust, scalable mobile applications. Based in Coimbatore, I specialize in Kotlin, Java, and modern Android architectures including Jetpack Compose.</p>
+                        <p>Currently, I'm expanding my horizons by pursuing a <span class="text-brand-400 font-medium">Master's Certification in Artificial Intelligence</span> — bridging the gap between mobile development and intelligent systems to build smarter, AI-powered applications.</p>
+                        <p>I've successfully led and mentored a team of 2 developers, delivered projects for international clients across Spain, Germany, and India, and built everything from fintech apps to emergency alert systems.</p>
+                    </div>
+                    <div class="reveal reveal-delay-2 mt-8 flex flex-wrap gap-3">
+                        <span class="px-3 py-1.5 text-xs font-medium text-brand-300 bg-brand-600/10 border border-brand-600/20 rounded-full">Android Native</span>
+                        <span class="px-3 py-1.5 text-xs font-medium text-brand-300 bg-brand-600/10 border border-brand-600/20 rounded-full">Kotlin</span>
+                        <span class="px-3 py-1.5 text-xs font-medium text-brand-300 bg-brand-600/10 border border-brand-600/20 rounded-full">Jetpack Compose</span>
+                        <span class="px-3 py-1.5 text-xs font-medium text-brand-300 bg-brand-600/10 border border-brand-600/20 rounded-full">AI/ML Learning</span>
+                        <span class="px-3 py-1.5 text-xs font-medium text-brand-300 bg-brand-600/10 border border-brand-600/20 rounded-full">Team Leadership</span>
+                    </div>
+                    <div class="reveal reveal-delay-3 mt-8">
+                        <a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="inline-flex items-center gap-2 text-sm text-brand-400 hover:text-brand-300 transition-colors group">
+                            <span class="iconify" data-icon="mdi:github" data-width="16"></span>Check out my GitHub
+                            <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-right" data-width="14"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Certification -->
+    <section class="relative py-16 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-black to-brand-950"></div>
+        <div class="absolute inset-0 red-line h-px w-full top-0 opacity-30"></div>
+        <div class="absolute inset-0 red-line h-px w-full bottom-0 opacity-30"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-600/20 border border-brand-600/30 mb-6">
+                    <span class="iconify text-brand-400" data-icon="mdi:brain" data-width="32"></span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">Advancing into <span class="text-gradient-red">Artificial Intelligence</span></h2>
+                <p class="text-sm text-slate-400 font-light max-w-2xl mx-auto leading-relaxed mb-8">Currently enrolled in a comprehensive Master's Certification program in AI, deepening my expertise in machine learning, neural networks, and natural language processing — to complement my mobile development skills with intelligent, data-driven capabilities.</p>
+                <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500">
+                    <div class="flex items-center gap-2"><span class="iconify text-brand-500" data-icon="mdi:check-circle" data-width="14"></span>Machine Learning</div>
+                    <div class="flex items-center gap-2"><span class="iconify text-brand-500" data-icon="mdi:check-circle" data-width="14"></span>Deep Learning</div>
+                    <div class="flex items-center gap-2"><span class="iconify text-brand-500" data-icon="mdi:check-circle" data-width="14"></span>NLP</div>
+                    <div class="flex items-center gap-2"><span class="iconify text-brand-500" data-icon="mdi:check-circle" data-width="14"></span>Computer Vision</div>
+                    <div class="flex items-center gap-2"><span class="iconify text-brand-500" data-icon="mdi:check-circle" data-width="14"></span>AI in Mobile</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="relative py-24 md:py-32 grid-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal text-xs font-mono text-brand-500 uppercase tracking-widest">Technical Arsenal</span>
+                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-semibold tracking-tight mt-3 text-gradient">Skills & Technologies</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="reveal card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:code-braces" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">Languages</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Kotlin</span><span class="text-brand-400">95%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="skill-bar h-full rounded-full" data-width="95%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Java</span><span class="text-brand-400">90%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="skill-bar h-full rounded-full" data-width="90%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-400">React Native</span><span class="text-brand-400">65%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="skill-bar h-full rounded-full" data-width="65%"></div></div></div>
+                        <div><div class="flex justify-between text-xs mb-1"><span class="text-slate-400">Swift</span><span class="text-brand-400">55%</span></div><div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="skill-bar h-full rounded-full" data-width="55%"></div></div></div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:cellphone" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">Mobile & UI</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Android Native</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Jetpack Compose</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">XML Layouts</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Material Design</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">MVVM / MVP</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Coroutines</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Retrofit</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">FCM</span>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:database" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">Databases & Cloud</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">SQLite</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Room DB</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Firebase</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Realtime DB</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">AWS</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">SharedPreferences</span>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:wrench" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">Tools & IDE</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Android Studio</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">VS Code</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Git</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">SVN</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Postman</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">ADB</span>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:puzzle" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">APIs & Integrations</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Google Login</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">OAuth 2.0</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Beacons</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">GPS / Location</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Aadhaar API</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Push Notifications</span>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5 group">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="iconify text-brand-400" data-icon="mdi:brain" data-width="20"></span></div>
+                        <h3 class="text-sm font-medium text-white">OS & Emerging</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Linux</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">macOS</span>
+                        <span class="px-3 py-1.5 text-xs text-slate-300 bg-white/5 rounded-lg border border-white/5">Windows</span>
+                        <span class="px-3 py-1.5 text-xs text-brand-300 bg-brand-600/10 rounded-lg border border-brand-600/20">AI / ML</span>
+                        <span class="px-3 py-1.5 text-xs text-brand-300 bg-brand-600/10 rounded-lg border border-brand-600/20">Deep Learning</span>
+                        <span class="px-3 py-1.5 text-xs text-brand-300 bg-brand-600/10 rounded-lg border border-brand-600/20">NLP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="relative py-24 md:py-32">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-dark-300 to-black"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal text-xs font-mono text-brand-500 uppercase tracking-widest">Career Path</span>
+                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-semibold tracking-tight mt-3 text-gradient">Professional Experience</h2>
+            </div>
+            <div class="relative">
+                <div class="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-brand-600 via-brand-600/30 to-transparent"></div>
+                <div class="reveal relative pl-16 md:pl-20 pb-12">
+                    <div class="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-brand-600 timeline-dot border-2 border-black z-10"></div>
+                    <div class="p-6 rounded-2xl bg-dark-200 border border-white/5 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div><h3 class="text-base font-medium text-white">Senior Android Developer</h3><p class="text-sm text-brand-400">Anniyam Payment Solutions</p></div>
+                            <span class="text-xs text-slate-500 font-mono mt-1 sm:mt-0">Oct 2021 – Present</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Leading Android development for payment solutions. Architecting scalable fintech applications with real-time transaction capabilities.</p>
+                        <div class="mt-3 inline-flex items-center gap-1.5 text-[10px] text-brand-400 bg-brand-600/10 px-2.5 py-1 rounded-full"><span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>Current Role</div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1 relative pl-16 md:pl-20 pb-12">
+                    <div class="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-dark-50 border-2 border-brand-600/50 z-10"></div>
+                    <div class="p-6 rounded-2xl bg-dark-200 border border-white/5 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div><h3 class="text-base font-medium text-white">Senior Android Developer</h3><p class="text-sm text-slate-400">Raptor Technology</p></div>
+                            <span class="text-xs text-slate-500 font-mono mt-1 sm:mt-0">Mar 2020 – Sep 2021</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Built educational apps (NEET/JEE preparation), mobile analytics SDK for cross-platform tracking, and mentored junior developers.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 relative pl-16 md:pl-20 pb-12">
+                    <div class="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-dark-50 border-2 border-brand-600/30 z-10"></div>
+                    <div class="p-6 rounded-2xl bg-dark-200 border border-white/5 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div><h3 class="text-base font-medium text-white">Senior Programmer – Android & iOS</h3><p class="text-sm text-slate-400">Walinns Innovation, Coimbatore</p></div>
+                            <span class="text-xs text-slate-500 font-mono mt-1 sm:mt-0">May 2017 – Mar 2019</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Developed international apps for Spain and Germany markets including shopping, deals, and fuel delivery applications.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3 relative pl-16 md:pl-20 pb-12">
+                    <div class="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-dark-50 border-2 border-brand-600/20 z-10"></div>
+                    <div class="p-6 rounded-2xl bg-dark-200 border border-white/5 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div><h3 class="text-base font-medium text-white">Junior Android Developer</h3><p class="text-sm text-slate-400">Nano Nino Inc, Coimbatore</p></div>
+                            <span class="text-xs text-slate-500 font-mono mt-1 sm:mt-0">Jan 2016 – Apr 2017</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Developed emergency alert app (Realy Safe) from scratch with GPS tracking and one-touch notification system.</p>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-4 relative pl-16 md:pl-20">
+                    <div class="absolute left-4 md:left-6 top-1 w-4 h-4 rounded-full bg-dark-50 border-2 border-brand-600/10 z-10"></div>
+                    <div class="p-6 rounded-2xl bg-dark-200 border border-white/5 card-hover">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                            <div><h3 class="text-base font-medium text-white">Android Trainee</h3><p class="text-sm text-slate-400">GB Solutions, Coimbatore</p></div>
+                            <span class="text-xs text-slate-500 font-mono mt-1 sm:mt-0">Aug 2015 – Dec 2015</span>
+                        </div>
+                        <p class="text-xs text-slate-400 leading-relaxed">Started my Android journey with foundational training in Java, Android SDK, and core mobile development concepts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="relative py-24 md:py-32 grid-bg">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal text-xs font-mono text-brand-500 uppercase tracking-widest">Featured Work</span>
+                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-semibold tracking-tight mt-3 text-gradient">Key Projects</h2>
+                <p class="reveal reveal-delay-2 text-sm text-slate-500 mt-3 max-w-xl mx-auto font-light">A selection of impactful applications built across fintech, e-commerce, education, and utility domains.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. Money Purse -->
+                <div class="reveal card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/41deccb9-007c-4449-a257-bb30f74b505d.png?auth_key=1879782221-6d5290081d7a42619f2b9a099b6dd0c2-0-b8268181c721fa2fd45e3a154c1488b9" alt="Money Purse" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-brand-600/90 rounded-md text-[10px] font-semibold text-white">Fintech</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Money Purse — SHG Banking App</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Digitizes banking for Self-Help Groups. Loan applications, repayment tracking, Aadhaar verification (Signzy, Leegality, Digio), and real-time transactions.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">SQLite</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Retrofit</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Aadhaar API</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Realtime</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Realy Safe -->
+                <div class="reveal reveal-delay-1 card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/7793c9b3-3f10-4c1f-8e34-d74d53264e53.png?auth_key=1879782221-5a835751813447e68728980429f9593c-0-8159ca15fd8a79a1e19a9c5027d0cc6a" alt="Realy Safe" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-red-700/90 rounded-md text-[10px] font-semibold text-white">Safety</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Realy Safe — Emergency Alert App</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">One-touch emergency alert system notifying contacts via SMS/email. Built from scratch with GPS tracking and countdown timer features.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">GPS</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">SMS API</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Timer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Alicante Shopndine -->
+                <div class="reveal reveal-delay-2 card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/7eb3cacc-a6df-41fd-80c7-faf12a75763a.png?auth_key=1879783249-44946b7b9fa048b9b72b2fe9657a4787-0-ab789ee9db097a07a23ea02503cb7228" alt="Alicante Shopndine" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-yellow-600/90 rounded-md text-[10px] font-semibold text-white">E-Commerce</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Alicante Shopndine — Shopping App</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Location-based offers for shops and restaurants in Spain. Integrated FCM, Beacons, Google Login, and Retrofit.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Beacons</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">FCM</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Retrofit</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">GPS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Gerber Deals -->
+                <div class="reveal card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/5ee4818f-4b66-4b4b-b4f7-103a30f9a3d5.png?auth_key=1879783249-a745cc752574430abb9d71471b526522-0-f72559c3ac3441fd2acda65c2f0ea869" alt="Gerber Deals" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-blue-700/90 rounded-md text-[10px] font-semibold text-white">Deals</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Gerber — Deals App (Germany)</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Alerts for local events and offers using beacons and push notifications. Implemented OAuth login and Retrofit backend connection.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">OAuth</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Beacons</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Push</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Leuf Fuel Delivery -->
+                <div class="reveal reveal-delay-1 card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/2eb7b352-194e-4658-9869-c0f1ceb55625.png?auth_key=1879782221-e6e9708062a14e68affbabf3de3c53c6-0-ea92fc94be87f940a8de32393631857c" alt="Leuf Fuel Delivery" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-green-700/90 rounded-md text-[10px] font-semibold text-white">Logistics</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Leuf — Fuel Delivery App</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Driver-consumer app for on-demand fuel delivery. Used FCM Realtime DB, Retrofit, Google services, and social login.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Realtime DB</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">FCM</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Social Login</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Raptor Experts -->
+                <div class="reveal reveal-delay-2 card-hover group rounded-2xl bg-dark-200 border border-white/5 overflow-hidden">
+                    <div class="aspect-video relative overflow-hidden bg-dark-400">
+                        <img src="https://z-cdn-media.chatglm.cn/files/39a4f541-91f2-443f-99d1-c5e0eae35766.png?auth_key=1879782221-afd5517b41e14fa1a3885d00cd59c74a-0-d3756dcfe432e53c0ce0845bca45fdba" alt="Raptor Experts" class="project-img w-full h-full object-contain p-4 opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-200 via-transparent to-transparent"></div>
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-purple-700/90 rounded-md text-[10px] font-semibold text-white">EdTech</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-sm font-medium text-white mb-2">Raptor Experts — Learning App</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Self-learning app for NEET/JEE with offline SQLite content, subject materials, mock tests, and Google Login integration.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">SQLite</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Offline</span>
+                            <span class="px-2 py-0.5 text-[10px] text-slate-400 bg-white/5 rounded">Mock Tests</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Projects -->
+            <div class="mt-6 grid md:grid-cols-2 gap-6">
+                <div class="reveal card-hover p-6 rounded-2xl bg-dark-200 border border-white/5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:calendar-clock" data-width="20"></span></div>
+                        <div><h3 class="text-sm font-medium text-white mb-1">App Point — Meeting Scheduler</h3><p class="text-xs text-slate-500 leading-relaxed">Schedule and track meetings with location tracking, reminders, and push alerts. Integrated Google Play Services, Retrofit, FCM.</p></div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:chart-bar" data-width="20"></span></div>
+                        <div><h3 class="text-sm font-medium text-white mb-1">Mobile Analytics SDK</h3><p class="text-xs text-slate-500 leading-relaxed">Cross-platform SDK to track usage metrics, device info, campaign analysis. Built for both Android & iOS. Used across multiple client projects.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="relative py-24 md:py-32">
+        <div class="absolute inset-0 bg-gradient-to-b from-black via-dark-300 to-black"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal text-xs font-mono text-brand-500 uppercase tracking-widest">Academic Background</span>
+                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-semibold tracking-tight mt-3 text-gradient">Education</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="reveal card-hover p-6 rounded-2xl bg-dark-200 border border-white/5">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:school" data-width="24"></span></div>
+                            <div><h3 class="text-sm font-medium text-white">B.E. – Computer Science</h3><p class="text-xs text-slate-400 mt-1">University College of Engineering, Nagercoil</p><p class="text-xs text-slate-500 mt-1">2010 – 2014</p></div>
+                        </div>
+                        <div class="text-right"><div class="text-2xl font-bold text-gradient-red">85%</div><div class="text-[10px] text-slate-500 uppercase tracking-wider">CGPA</div></div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0"><span class="iconify text-slate-400" data-icon="mdi:book-open-variant" data-width="24"></span></div>
+                            <div><h3 class="text-sm font-medium text-white">HSC – Computer Science</h3><p class="text-xs text-slate-400 mt-1">Girls Higher Secondary School, Tirunelveli</p><p class="text-xs text-slate-500 mt-1">2009 – 2010</p></div>
+                        </div>
+                        <div class="text-right"><div class="text-2xl font-bold text-slate-300">81%</div><div class="text-[10px] text-slate-500 uppercase tracking-wider">Score</div></div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 card-hover p-6 rounded-2xl bg-dark-200 border border-white/5">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0"><span class="iconify text-slate-400" data-icon="mdi:certificate" data-width="24"></span></div>
+                            <div><h3 class="text-sm font-medium text-white">SSLC</h3><p class="text-xs text-slate-400 mt-1">Girls Higher Secondary School, Tirunelveli</p><p class="text-xs text-slate-500 mt-1">2007 – 2008</p></div>
+                        </div>
+                        <div class="text-right"><div class="text-2xl font-bold text-slate-300">91%</div><div class="text-[10px] text-slate-500 uppercase tracking-wider">Score</div></div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-3 card-hover p-6 rounded-2xl bg-gradient-to-r from-brand-950/50 to-dark-200 border border-brand-600/20 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-600/5 rounded-full blur-2xl"></div>
+                    <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-600/20 border border-brand-600/30 flex items-center justify-center shrink-0 animate-glow"><span class="iconify text-brand-400" data-icon="mdi:brain" data-width="24"></span></div>
+                            <div>
+                                <div class="flex items-center gap-2"><h3 class="text-sm font-medium text-white">Master in AI — Certification Course</h3><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span></span></div>
+                                <p class="text-xs text-brand-300 mt-1">Currently Pursuing</p>
+                                <p class="text-xs text-slate-500 mt-1">Machine Learning · Deep Learning · NLP · Computer Vision</p>
+                            </div>
+                        </div>
+                        <div class="text-right"><div class="text-xs font-semibold text-brand-400 bg-brand-600/10 px-3 py-1.5 rounded-full border border-brand-600/20">In Progress</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="relative py-24 md:py-32 grid-bg">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="reveal text-xs font-mono text-brand-500 uppercase tracking-widest">Let's Connect</span>
+                <h2 class="reveal reveal-delay-1 text-3xl md:text-4xl font-semibold tracking-tight mt-3 text-gradient">Get In Touch</h2>
+                <p class="reveal reveal-delay-2 text-sm text-slate-500 mt-3 max-w-xl mx-auto font-light">Interested in collaborating or have a position that fits my skills? I'd love to hear from you.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="reveal card-hover p-5 rounded-2xl bg-dark-200 border border-white/5 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:email-outline" data-width="18"></span></div>
+                        <div><h4 class="text-xs text-slate-500 uppercase tracking-wider mb-1">Email</h4><a href="mailto:gomselat8312@gmail.com" class="text-sm text-white hover:text-brand-400 transition-colors">gomselat8312@gmail.com</a></div>
+                    </div>
+                    <div class="reveal reveal-delay-1 card-hover p-5 rounded-2xl bg-dark-200 border border-white/5 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:phone-outline" data-width="18"></span></div>
+                        <div><h4 class="text-xs text-slate-500 uppercase tracking-wider mb-1">Phone</h4><a href="tel:+916384998312" class="text-sm text-white hover:text-brand-400 transition-colors">+91 63849 98312</a></div>
+                    </div>
+                    <div class="reveal reveal-delay-2 card-hover p-5 rounded-2xl bg-dark-200 border border-white/5 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:map-marker-outline" data-width="18"></span></div>
+                        <div><h4 class="text-xs text-slate-500 uppercase tracking-wider mb-1">Location</h4><p class="text-sm text-slate-300">Coimbatore, Tamil Nadu, India</p></div>
+                    </div>
+                    <div class="reveal reveal-delay-3 card-hover p-5 rounded-2xl bg-dark-200 border border-white/5 flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-600/10 border border-brand-600/20 flex items-center justify-center shrink-0"><span class="iconify text-brand-400" data-icon="mdi:github" data-width="18"></span></div>
+                        <div><h4 class="text-xs text-slate-500 uppercase tracking-wider mb-1">GitHub</h4><a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="text-sm text-white hover:text-brand-400 transition-colors">Gomathi-Android-Dev</a></div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <form id="contactForm" class="p-6 rounded-2xl bg-dark-200 border border-white/5 space-y-4">
+                        <div><label class="block text-xs text-slate-500 uppercase tracking-wider mb-2">Name</label><input type="text" placeholder="Your name" required class="w-full px-4 py-3 bg-dark-400 border border-white/10 rounded-lg text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:ring-1 focus:ring-brand-600/20 transition-all"></div>
+                        <div><label class="block text-xs text-slate-500 uppercase tracking-wider mb-2">Email</label><input type="email" placeholder="your@email.com" required class="w-full px-4 py-3 bg-dark-400 border border-white/10 rounded-lg text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:ring-1 focus:ring-brand-600/20 transition-all"></div>
+                        <div><label class="block text-xs text-slate-500 uppercase tracking-wider mb-2">Message</label><textarea rows="4" placeholder="Tell me about your project..." required class="w-full px-4 py-3 bg-dark-400 border border-white/10 rounded-lg text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:ring-1 focus:ring-brand-600/20 transition-all resize-none"></textarea></div>
+                        <button type="submit" class="w-full github-btn px-6 py-3.5 text-white text-sm font-semibold rounded-lg flex items-center justify-center gap-2"><span class="iconify" data-icon="mdi:send" data-width="16"></span>Send Message</button>
+                        <div id="formMessage" class="hidden text-center text-sm py-2 rounded-lg"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-xs">G</div>
+                    <span class="text-sm text-slate-500">© 2025 Gomathi S. All rights reserved.</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="https://github.com/Gomathi-Android-Dev" target="_blank" class="text-slate-500 hover:text-brand-400 transition-colors"><span class="iconify" data-icon="mdi:github" data-width="20"></span></a>
+                    <a href="mailto:gomselat8312@gmail.com" class="text-slate-500 hover:text-brand-400 transition-colors"><span class="iconify" data-icon="mdi:email-outline" data-width="20"></span></a>
+                    <a href="tel:+916384998312" class="text-slate-500 hover:text-brand-400 transition-colors"><span class="iconify" data-icon="mdi:phone-outline" data-width="20"></span></a>
+                </div>
+                <div class="flex items-center gap-1 text-xs text-slate-600"><span>Built with</span><span class="iconify text-brand-500" data-icon="mdi:heart" data-width="12"></span><span>in Coimbatore</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('open', menuOpen);
+            menuBtn.innerHTML = menuOpen ? '<span class="iconify" data-icon="mdi:close" data-width="24"></span>' : '<span class="iconify" data-icon="mdi:menu" data-width="24"></span>';
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenu.classList.remove('open');
+                menuBtn.innerHTML = '<span class="iconify" data-icon="mdi:menu" data-width="24"></span>';
+            });
+        });
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => observer.observe(el));
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.style.width = entry.target.getAttribute('data-width'); });
+        }, { threshold: 0.5 });
+        skillBars.forEach(bar => { bar.style.width = '0%'; skillObserver.observe(bar); });
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+                particle.style.opacity = (0.1 + Math.random() * 0.2).toString();
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('formMessage');
+            msg.classList.remove('hidden');
+            msg.className = 'text-center text-sm py-2 rounded-lg bg-brand-600/10 text-brand-300 border border-brand-600/20';
+            msg.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+            this.reset();
+            setTimeout(() => { msg.classList.add('hidden'); }, 5000);
+        });
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => { if (scrollY >= section.offsetTop - 100) current = section.getAttribute('id'); });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-white'); link.classList.add('text-slate-400');
+                if (link.getAttribute('href') === '#' + current) { link.classList.add('text-white'); link.classList.remove('text-slate-400'); }
+            });
+        });
+    </script>
+</body>
+</html>
